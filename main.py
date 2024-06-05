@@ -37,6 +37,8 @@ app.add_middleware(LogIncorrectPathsMiddleware)
 
 @app.post("/chat/completions")
 async def chat_completions(request: ChatCompletionRequest):
+
+    print(request)
     
     if request.messages and request.messages[0].role == 'user':
       resp_content = "As a mock AI Assitant, I can only echo your last message:" + request.messages[-1].content
