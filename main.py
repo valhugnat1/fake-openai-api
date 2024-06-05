@@ -52,3 +52,7 @@ async def chat_completions(request: ChatCompletionRequest):
             "message": ChatMessage(role="assistant", content=resp_content)
         }]
     }
+
+@app.get("/")
+async def read_root():
+    return {"message": "Hello, World!"}
