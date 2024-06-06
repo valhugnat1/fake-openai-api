@@ -48,8 +48,8 @@ async def chat_completions(request: ChatCompletionRequest):
             json={
                 "frequency_penalty": 0,
                 "presence_penalty": 0,
-                "user": request.messages[0].role,
-                "messages": {"text":request.messages[0].content},
+                "user": request.messages[-1].role,
+                "messages": {"text":request.messages[-1].content},
                 "stream": request.stream,
                 "top_p": 0,
                 "model": request.model,
