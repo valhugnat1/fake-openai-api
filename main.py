@@ -34,9 +34,9 @@ app.add_middleware(LogIncorrectPathsMiddleware)
 @app.post("/chat/completions")
 async def chat_completions(request: ChatCompletionRequest):
 
-    print(request)
+    print("REQUEST : ", request.messages[-1])
     
-    if request.messages and request.messages[-1].role == 'user':
+    if request.messages and request.messages[len(request.messages)-1].role == 'user':
     #   resp_content = request.messages[0].content+" As a mock AI Assitant, I can only echo your last message:" #+ request.messages[-1].content
 
 
@@ -61,16 +61,16 @@ async def chat_completions(request: ChatCompletionRequest):
         if not response.ok:
             raise Exception(response.status_code, response.text)
         
-        resp_content = response.json()["outputs"]["choices"][0]["message"]["content"]
+        resp_content = response.json()["outputs"]["choices"][len(response.json()["outputs"]["choices"])-1]["message"]["content"]
 
-        print(response.json()["outputs"]["choices"])
+        print("RESPONSE : ", response.json()["outputs"]["choices"])
 
     else:
         resp_content = "As a mock AI Assitant, I can only echo your last message, but there were no messages!"
 
     resp_content = resp_content.replace("\n\n", "\n")
 
-    print (resp_content)
+    print ("RETURN : ", resp_content)
 
     return {
         "id": "1337",
