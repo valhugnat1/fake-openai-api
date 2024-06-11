@@ -97,7 +97,7 @@ async def chat_completions(request: ChatCompletionRequest):
 
 
 
-@app.post("hf_chatui/chat/completions")
+@app.post("hfchatui/chat/completions")
 async def chat_completions(request: ChatCompletionRequestHF_chatui):
     global ENDPOINT_TOKEN
 
